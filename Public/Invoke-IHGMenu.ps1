@@ -28,11 +28,11 @@
         )
 
     Begin {
-        Get-MOTD
+        #Get-MOTD
     }
     Process {
-        Write-Host $Parameter1
 
+        Invoke-MyMenu -Path .\ADTasks.xml
 	}
     End {
     
