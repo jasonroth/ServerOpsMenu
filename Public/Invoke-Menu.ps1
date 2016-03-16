@@ -1,20 +1,22 @@
 ﻿Function Invoke-Menu {
     <#
         .SYNOPSIS
-            Install SCCM agent on remote servers.
+            
 
         .DESCRIPTION
-            Initiates remote PSSession on specified servers, downloads SCCM agent and installs agent,
-            and configures correct Management Point and SiteCode. 
+             
 
         .PARAMETER Name
-            $ComputerName
+            
         
         .EXAMPLE
-            Install-SCCMAgent -ComputerName server1.ihg.global
+            
         
 		.EXAMPLE
-            Get-ADComputer -Server ihg.global -Filter {OperatingSystem -like 'Windows Server*'}.DNSHostName | Install-SCCMAgent -Verbose
+        
+        .VERSION
+            0.1.0
+            
     #>
 
     [cmdletbinding()]
@@ -139,7 +141,7 @@ $($ImportedMenu.title)
 
 #pause
 
-                $Nothing = Read-Host "Press any key to continue"
+                #$Nothing = Read-Host "Press any key to continue"
             }
         }
 
