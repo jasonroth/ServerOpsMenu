@@ -29,4 +29,4 @@ Title = $Title
 Items = $items
 }
 
-$MyMenu | Export-Clixml -Path test.xml
+$MyMenu | Export-Clixml -Path $path
