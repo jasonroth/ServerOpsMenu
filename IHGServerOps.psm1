@@ -18,3 +18,4 @@
     # Set variables visible to the module and its functions only
 
 Export-ModuleMember -Function $Public.Basename
+#Export-ModuleMember -Function '*'
