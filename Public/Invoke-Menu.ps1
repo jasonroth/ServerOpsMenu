@@ -99,7 +99,7 @@ $($ImportedMenu.title)
 
     Process {
         foreach ($Item in $ImportedMenu.Items) {
-            $HereMenu+= "{0}) {1}`n`n" -f $Item.ItemNumber,$Item.MenuItem
+            $HereMenu+= "{0}) {1}`n" -f $Item.ItemNumber,$Item.MenuItem
         }
         
         $HereMenu += "Enter a menu number or Q to quit"
@@ -127,26 +127,26 @@ $($ImportedMenu.title)
 
 #create a scriptblock
 
-        $ScriptBlock = [scriptblock]::Create($ImportedMenu.Items[$Selection -1].action)
+                $ScriptBlock = [scriptblock]::Create($ImportedMenu.Items[$Selection -1].action)
 
 # Build Hash to be used for passing parameters to Invoke-Command commandlet
             
-        $CommandParams = @{
-            ScriptBlock = $ScriptBlock
-            ErrorAction = 'Stop'
-        }
+                $CommandParams = @{
+                    ScriptBlock = $ScriptBlock
+                    ErrorAction = 'Stop'
+                }
     
 # Add optional parameters to hash
     
-        if ($RemoteSession) {
-            $CommandParams.Add('Session', $RemoteSession)
-        }
-
-        Invoke-Command @CommandParams | Out-Host
+                if ($RemoteSession) {
+                    $CommandParams.Add('Session', $RemoteSession)
+                }
+            
+                Invoke-Command @CommandParams | Out-Host
 
 #pause
 
-                #$Nothing = Read-Host "Press any key to continue"
+                $Nothing = Read-Host "Press any key to continue"
             }
         }
 
