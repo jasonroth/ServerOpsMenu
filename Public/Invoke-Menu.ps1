@@ -4,7 +4,7 @@
             Systems and server operations menu for service desk personnel.
 
         .DESCRIPTION
-            Scafolding for generating custom operations menues. Can be used for local or remote management.
+            Scaffolding for generating custom operations menus. Can be used for local or remote management.
             Server management, AD, Exchange, etc...
 
         .PARAMETER ComputerName
