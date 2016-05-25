@@ -1,4 +1,4 @@
-Function get-SOMservice {
+Function Get-SOMService {
     <#
         .SYNOPSIS
             ####
@@ -24,14 +24,15 @@ Function get-SOMservice {
     Process {
         Get-CimInstance Win32_Service |
         foreach {
-             DisplayName = $_.DisplayName
-             Name = $_.Name
-             StartMode = $_.StartMode
-             State = $_.State
-             Status = $_.Status
+            [pscustomobject]@{
+                DisplayName = $_.DisplayName
+                Name = $_.Name
+                StartMode = $_.StartMode
+                State = $_.State
+                Status = $_.Status
+            }
         }
     }
     
     End {}
 }
-

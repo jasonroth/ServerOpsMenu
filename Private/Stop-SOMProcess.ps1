@@ -1,4 +1,4 @@
-Function Restart-SOMService {
+Function Stop-SOMProcess {
     <#
         .SYNOPSIS
             ####
@@ -28,22 +28,23 @@ Function Restart-SOMService {
             ValueFromPipelineByPropertyName=$true)]
 	        [ValidateNotNullOrEmpty()]
             [string[]]
-            $Service
+            $Name
         )
 
     Begin {}
     
     Process {
-        foreach ($Item in $Service) {
+        foreach ($Item in $Name) {
             try {
-                Stop-Service -Name $Item -Confirm -Force -PassThru  -ErrorAction Stop
-                Start-Service -Name $Item -PassThru -ErrorAction Stop
-                Write-Host -NoNewline -ForegroundColor Green -Object "Successfully restarted $Item service"
+                Stop-Process -Name $Item -Confirm -Force -PassThru  -ErrorAction Stop
+                #Start-Service -Name $Item -PassThru -ErrorAction Stop
+                Write-Host -NoNewline -ForegroundColor Green -Object "Successfully stopped $Item process"
             }
             catch {
                 Write-Warning $_
             }
         }
 	}
+    
     End {}
 }
