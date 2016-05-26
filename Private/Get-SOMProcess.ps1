@@ -42,7 +42,7 @@ Function Get-SOMProcess {
             }
             Get-Process | 
             Select-Object -Property Name, Description, $CPUPercent |
-            Sort-Object -Property CPUPercent -Descending |
+            Sort-Object -Property 'CPUPercent' -Descending |
             Select-Object -First 5
         }
         elseif ($Property -eq 'Memory') {
@@ -54,7 +54,7 @@ Function Get-SOMProcess {
             }
             Get-Process | 
             Select-Object -Property Name, Description, $MemoryMB |
-            Sort-Object -Property CPUPercent -Descending |
+            Sort-Object -Property 'Memory(MB)' -Descending |
             Select-Object -First 5
         }
     }
