@@ -47,7 +47,7 @@
                 else {Throw "Cannot validate path $_"}
             })]
             [string]
-            $Path = 'ServerOpsMenu.xml'
+            $Path = 'ServerTasks.xml'
         )
 
     Begin {
@@ -135,13 +135,12 @@ $($ImportedMenu.title)
                     ScriptBlock = $ScriptBlock
                     ErrorAction = 'Stop'
                 }
+                if ($Credential) {
+                    $CommandParams.Add('Credential', $Credential)  
+                }
     
 # Add optional parameters to hash
     
-                if ($RemoteSession) {
-                    $CommandParams.Add('Session', $RemoteSession)
-                }
-            
                 Invoke-Command @CommandParams | Out-Host
 
 #pause
@@ -159,3 +158,4 @@ $($ImportedMenu.title)
 
     End {}
 }
+

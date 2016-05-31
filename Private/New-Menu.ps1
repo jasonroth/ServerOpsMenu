@@ -1,5 +1,5 @@
 ﻿$title = 'Server Operations Tasks'
-$path = 'ServerOpsMenu.xml'
+$path = 'ServerTasks.xml'
 
 $hash = [ordered]@{
     'Get Services' = {Get-SOMService | Format-Table}
@@ -9,7 +9,7 @@ $hash = [ordered]@{
     'Stop Process' = {Stop-SOMProcess -Verbose}
     'Restart Process' = {Restart-SOMProcess -Verbose}
     'Get Volumes' = {Get-SOMVolume}
-    'Get Recent System Eventlog' = {Get-SOMEventLog | Format-Table -AutoSize}
+    'Get Recent System Eventlog' = {Get-SOMEventLog -ComputerName $ComputerName -Credential $Credential | Format-Table -AutoSize}
     'Restart Server' = {Restart-Computer -Confirm -Force}    
 }
 
