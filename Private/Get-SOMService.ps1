@@ -19,6 +19,18 @@ Function Get-SOMService {
             ####
   #>
 
+    [CmdletBinding()]
+        Param (
+            [Parameter()]
+            [string]
+            $ComputerName,
+
+            [Parameter()]
+            [PsCredential]
+            [System.Management.Automation.CredentialAttribute()]
+            $Credential
+        )
+        
     Begin {}
     
     Process {

@@ -23,12 +23,19 @@ Function Restart-SOMProcess {
         Param (
             [Parameter(
             Mandatory=$true,
-            Position=0,
-            ValueFromPipeline=$true,
-            ValueFromPipelineByPropertyName=$true)]
+            Position=0)]
 	        [ValidateNotNullOrEmpty()]
             [string[]]
-            $Name
+            $Name,
+            
+            [Parameter()]
+            [string]
+            $ComputerName,
+
+            [Parameter()]
+            [PsCredential]
+            [System.Management.Automation.CredentialAttribute()]
+            $Credential
         )
 
     Begin {}

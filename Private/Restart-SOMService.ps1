@@ -23,21 +23,28 @@ Function Restart-SOMService {
         Param (
             [Parameter(
             Mandatory=$true,
-            Position=0,
-            ValueFromPipeline=$true,
-            ValueFromPipelineByPropertyName=$true)]
+            Position=0)]
 	        [ValidateNotNullOrEmpty()]
             [string[]]
-            $Service
+            $Name,
+            
+            [Parameter()]
+            [string[]]
+            $ComputerName,
+
+            [Parameter()]
+            [PsCredential]
+            [System.Management.Automation.CredentialAttribute()]
+            $Credential
         )
 
     Begin {}
     
     Process {
-        foreach ($Item in $Service) {
+        foreach ($Service in $Name) {
             try {
-                Stop-Service -Name $Item -Confirm -Force -PassThru -ErrorAction Stop
-                Start-Service -Name $Item -PassThru -ErrorAction Stop
+                Stop-Service -Name $Service -Confirm -Force -PassThru -ErrorAction Stop
+                Start-Service -Name $Service -PassThru -ErrorAction Stop
                 Write-Host -NoNewline -ForegroundColor Green -Object "Successfully restarted $Item service"
             }
             catch {

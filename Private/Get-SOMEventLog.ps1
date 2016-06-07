@@ -21,22 +21,13 @@ Function Get-SOMEventLog {
 
     [CmdletBinding()]
         Param (
-            [Parameter(
-            Mandatory=$false,
-            Position=0)]
-			[ValidateNotNullOrEmpty()]
-            [string[]]
-            $ComputerName,
-
             [Parameter()]
-            [PsCredential]
-            [System.Management.Automation.CredentialAttribute()]
-            $Credential
+            [string]
+            $ComputerName
         )
         
-    Begin {}
-
-    Process {
+    Begin {
+        
         $CommandParams = @{
             LogName = 'System'
             Newest = '50'
@@ -45,15 +36,21 @@ Function Get-SOMEventLog {
         if ($ComputerName) {
            $CommandParams.Add('ComputerName', $ComputerName) 
         }
-        if ($Credential) {
-            $CommandParams.Add('Credential', $Credential)  
+    }
+
+    Process {
+
+        try {
+            Get-Eventlog @CommandParams |
+            Select-Object -Property Index,
+                                    TimeGenerated,
+                                    InstanceID,
+                                    EntryType,
+                                    Message
         }
-        Get-Eventlog @CommandParams |
-        Select-Object -Property Index,
-                                TimeGenerated,
-                                InstanceID,
-                                EntryType,
-                                Message
+        catch {
+            Write-Warning $_  
+        }
 	}
 
     End {}
